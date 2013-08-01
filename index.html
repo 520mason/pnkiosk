@@ -309,16 +309,21 @@
 				
 				//alert(base_url + res_id_input.val() + "/" + direction + "?user=kyle.jernigan&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
-				$.get(base_url,
-				  {					
-					  user : "Kyle.Jernigan",
-					  siteId : garage_select.val(),
-					  timestamp : timeUrlString
-				  },
-				  function(data,status){
-				  	  alert(status);
-				  	  alert(data);
-				  });
+				  var urlParameters = {
+				  	"user" : "Kyle.Jernigan",
+				  	"siteId" : garage_select.val(),
+				  	"timestamp" : timeUrlString
+				  };
+				  
+				  $.ajax({
+					   type:"GET",
+					   username: "tester",
+					   password: "c6ddbbb079e8011bb1d6",
+					   url: base_url,
+					   data: urlParameters,
+					   dataType: "xml",
+					   success: function(data, status, httpRequest) { alert('hi');}
+					});
 				
 			}
 		});
