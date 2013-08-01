@@ -189,6 +189,11 @@
 			$('#backend_response').show();
 		}
 		
+		function resetActivityIndicator() {
+			$('#activity_indicator').show();
+			$('#backend_response').hide();
+		}
+		
 		
 		$('.form_datetime').datetimepicker({
 			//language:  'fr',
@@ -276,7 +281,8 @@
 				res_id_input.tooltip('show');
 			}
 			
-			if (validInput) {		
+			if (validInput) {
+				resetActivityIndicator();	
 				$('#modalwin').modal('show');
 				setTimeout(function() {backendResponseReceived()},1500);
 			}
