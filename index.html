@@ -321,7 +321,10 @@
 					   headers: {"Authorization" : "Basic dGVzdGVyOmM2ZGRiYmIwNzllODAxMWJiMWQ2"},
 					   url: base_url,
 					   data: urlParameters,
-					   success: function(data, status, httpRequest) { backendResponseReceived(status);}
+					   success: function(data, status, httpRequest) { 
+					   		backendResponseReceived(status);
+					   		console.log(data);
+					   }
 					});
 				
 			}
