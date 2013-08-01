@@ -183,9 +183,10 @@
 		}
 		
 		//Backend Response Received
-		function backendResponseReceived() {
+		function backendResponseReceived(data) {
 			$('#activity_indicator').hide();
-			$('#backend_response').html('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
+			//$('#backend_response').html('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
+			$('#backend_response').html(data);
 			$('#backend_response').show();
 		}
 		
@@ -286,7 +287,7 @@
 				//Show modal and prepare activity indicator
 				resetActivityIndicator();	
 				$('#modalwin').modal('show');			
-				setTimeout(function() {backendResponseReceived()},1500);
+				//setTimeout(function() {backendResponseReceived()},1500);
 				
 				var direction = ($('.slider-button').hasClass("on") ? "out" : "in");
 				
@@ -321,7 +322,7 @@
 					   url: base_url,
 					   data: urlParameters,
 					   dataType: "xml",
-					   success: function(data, status, httpRequest) { alert(data);}
+					   success: function(data, status, httpRequest) { backendResponseReceived(data);}
 					});
 				
 			}
