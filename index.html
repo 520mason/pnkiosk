@@ -321,9 +321,10 @@
 					   headers: {"Authorization" : "Basic dGVzdGVyOmM2ZGRiYmIwNzllODAxMWJiMWQ2"},
 					   url: base_url,
 					   data: urlParameters,
-					   success: function(data, status, httpRequest) { 
-					   		backendResponseReceived(status);
-					   		console.log(data);
+					   dataType: "xml",
+					   success: function(xml, status, httpRequest) { 
+					   		backendResponseReceived($(xml).find("detail"));
+					   		console.log(xml);
 					   }
 					});
 				
