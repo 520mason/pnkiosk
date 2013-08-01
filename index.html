@@ -282,9 +282,44 @@
 			}
 			
 			if (validInput) {
+				
+				//Show modal and prepare activity indicator
 				resetActivityIndicator();	
-				$('#modalwin').modal('show');
+				$('#modalwin').modal('show');			
 				setTimeout(function() {backendResponseReceived()},1500);
+				
+				var direction = ($('.slider-button').hasClass("on") ? "out" : "in");
+				
+				var start = dateFromString($('#time_input').val());
+				var syyyy = start.getFullYear();
+				var sm = start.getMonth() + 1;
+				var smm = sm<10 ? '0'+sm : sm;
+				var sd = start.getDate();
+				var sdd = sd<10 ? '0'+sd : sd;
+				var sh = start.getHours();
+				var shh = sh<10 ? '0'+sh : sh;
+				var smi = start.getMinutes();
+				var smmi = smi<10 ? '0'+smi : smi;
+				var ss = start.getSeconds();
+				var sss = ss<10 ? '0'+ss : ss;
+				
+				var timeUrlString = syyyy + "-" + smm + "-" + sdd + "T" + shh + "%3A" + smmi + "%3A" + sss + "-500";
+				
+				var base_url = "/call/ffq/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
+				
+				//alert(base_url + res_id_input.val() + "/" + direction + "?user=kyle.jernigan&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
+				
+				$.get(base_url,
+				  {					
+					  user : "Kyle.Jernigan",
+					  siteId : garage_select.val(),
+					  timestamp : timeUrlString
+				  },
+				  function(data,status){
+				  	  alert(status);
+				  	  alert(data);
+				  });
+				
 			}
 		});
 	});
