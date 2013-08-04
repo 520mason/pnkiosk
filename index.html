@@ -338,11 +338,11 @@
 					   dataType: "html",
 					   success: function(data, status, httpRequest) {
 					   
-					   		var typeMatch  = data.match(/<type>([^<]*)<\/type>/),
+					   		var typeMatch  = data.match(/<type>([^<]*)<\/type>/);
 					   		var responseType = typeMatch[1];
 					   		console.log("Type = " + responseType);
 					   		
-					   		var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/),
+					   		var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
 					   		var responseDetail = detailMatch[1];
 					   		console.log("Detail= " + responseDetail);
 					   		
