@@ -349,7 +349,7 @@
 								case "ERROR":
 									var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
 									var responseDetail = detailMatch[1];
-									backendResponseReceived('<div class="alert alert-error" style="width:300px; margin: 0 auto;"><i class="icon-remove-sign"></i>' + responseDetail + '</div>');
+									backendResponseReceived('<div class="alert alert-error" style="margin: 0 auto;">' + responseDetail + '</div>');
 									break;
 								default:
 									backendResponseReceived(data);
@@ -358,7 +358,7 @@
 					   		console.log(data);
 					   },
 					   error: function (xhr, ajaxOptions, thrownError) {
-                        	backendResponseReceived('<div class="alert alert-error" style="width:300px; margin: 0 auto;"><i class="icon-remove-sign"></i>HTTP Status Code: ' + xhr.status + '</div>');
+                        	backendResponseReceived('<div class="alert alert-error" style="width:150px; margin: 0 auto;"><i class="icon-remove-sign"></i>' + xhr.status + ' Error</div>');
 					   }
 					   
 					});
