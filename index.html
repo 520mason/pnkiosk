@@ -344,19 +344,23 @@
 					   		
 					   		switch(responseType) {
 								case "success":
-									backendResponseReceived("Success");
+									backendResponseReceived('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
 									break;
 								case "ERROR":
 									var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
 									var responseDetail = detailMatch[1];
-									backendResponseReceived(responseDetail);
+									backendResponseReceived('<div class="alert alert-error" style="width:300px; margin: 0 auto;"><i class="icon-remove-sign"></i>' + responseDetail + '</div>');
 									break;
 								default:
 									backendResponseReceived(data);
 					   		}	
 					   								   								   		
 					   		console.log(data);
+					   },
+					   error: function (xhr, ajaxOptions, thrownError) {
+                        	backendResponseReceived('<div class="alert alert-error" style="width:300px; margin: 0 auto;"><i class="icon-remove-sign"></i>HTTP Status Code: ' + xhr.status + '</div>');
 					   }
+					   
 					});
 				
 			}
