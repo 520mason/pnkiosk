@@ -335,9 +335,9 @@
 					   headers: {"Authorization" : "Basic dGVzdGVyOmM2ZGRiYmIwNzllODAxMWJiMWQ2"},
 					   url: base_url,
 					   data: urlParameters,
-					   dataType: "xml",
+					   //dataType: "xml",
 					   success: function(xml, status, httpRequest) { 
-					   		
+					   		/*
 					   		if ($(xml).find("type") == "success") {					   		
 					   			backendResponseReceived("Success");
 					   			console.log("success found");
@@ -349,7 +349,7 @@
 					   		else {
 					   			backendResponseReceived(xmlToString(xml));
 					   			console.log("neither found");
-					   		}
+					   		} */
 					   								   								   		
 					   		console.log(xml);
 					   }
