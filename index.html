@@ -323,7 +323,14 @@
 					   data: urlParameters,
 					   dataType: "xml",
 					   success: function(xml, status, httpRequest) { 
-					   		backendResponseReceived($(xml).find("detail"));
+					   		
+					   		if ($(xml).find("type") === "success")
+					   			backendResponseReceived("Success");
+					   		else if ($(xml).find("detail")!="")
+					   			backendResponseReceived($(xml).find("detail"));
+					   		else
+					   			backendResponseReceived(xml);
+					   		
 					   		console.log(xml);
 					   }
 					});
