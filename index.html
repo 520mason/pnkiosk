@@ -336,7 +336,12 @@
 					   url: base_url,
 					   data: urlParameters,
 					   dataType: "html",
-					   success: function(xml, status, httpRequest) { 
+					   success: function(data, status, httpRequest) {
+					   
+					   		var responseString = data,
+					   			match  = responseString.match(/<type>([^<]*)<\/type>/),
+					   			responseType = match[1];
+					   		console.log("Type = " + responseType);
 					   		/*
 					   		if ($(xml).find("type") == "success") {					   		
 					   			backendResponseReceived("Success");
