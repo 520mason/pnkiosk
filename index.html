@@ -182,6 +182,20 @@
 		  return new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
 		}
 		
+		function xmlToString(xmlData) { 
+
+			var xmlString;
+			//IE
+			if (window.ActiveXObject){
+				xmlString = xmlData.xml;
+			}
+			// code for Mozilla, Firefox, Opera, etc.
+			else{
+				xmlString = (new XMLSerializer()).serializeToString(xmlData);
+			}
+			return xmlString;
+		}   
+		
 		//Backend Response Received
 		function backendResponseReceived(data) {
 			$('#activity_indicator').hide();
@@ -324,14 +338,19 @@
 					   dataType: "xml",
 					   success: function(xml, status, httpRequest) { 
 					   		
-					   		if ($(xml).find("type") == "success")
+					   		if ($(xml).find("type") == "success") {					   		
 					   			backendResponseReceived("Success");
-					   		else if ($(xml).find("detail")!="")
+					   			console.log("success found");
+					   		}
+					   		else if ($(xml).find("detail")!="") {
 					   			backendResponseReceived($(xml).find("detail"));
-					   		else
-					   			backendResponseReceived(xml);
-					   			
-					   								   		
+					   			console.log("detail found");
+					   		}
+					   		else {
+					   			backendResponseReceived(xmlToString(xml));
+					   			console.log("neither found");
+					   		}
+					   								   								   		
 					   		console.log(xml);
 					   }
 					});
