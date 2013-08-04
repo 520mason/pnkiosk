@@ -338,10 +338,14 @@
 					   dataType: "html",
 					   success: function(data, status, httpRequest) {
 					   
-					   		var responseString = data,
-					   			match  = responseString.match(/<type>([^<]*)<\/type>/),
-					   			responseType = match[1];
+					   		var typeMatch  = data.match(/<type>([^<]*)<\/type>/),
+					   		var responseType = typeMatch[1];
 					   		console.log("Type = " + responseType);
+					   		
+					   		var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/),
+					   		var responseDetail = detailMatch[1];
+					   		console.log("Detail= " + responseDetail);
+					   		
 					   		/*
 					   		if ($(xml).find("type") == "success") {					   		
 					   			backendResponseReceived("Success");
@@ -356,7 +360,7 @@
 					   			console.log("neither found");
 					   		} */
 					   		//console.log("type=" + xmlToString($(xml).find("type")));						   								   		
-					   		console.log(xml);
+					   		console.log(data);
 					   }
 					});
 				
