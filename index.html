@@ -340,26 +340,21 @@
 					   
 					   		var typeMatch  = data.match(/<type>([^<]*)<\/type>/);
 					   		var responseType = typeMatch[1];
-					   		console.log("Type = " + responseType);
+					   		//console.log("Type = " + responseType);
 					   		
-					   		var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
-					   		var responseDetail = detailMatch[1];
-					   		console.log("Detail= " + responseDetail);
-					   		
-					   		/*
-					   		if ($(xml).find("type") == "success") {					   		
-					   			backendResponseReceived("Success");
-					   			console.log("success found");
-					   		}
-					   		else if ($(xml).find("detail")!="") {
-					   			backendResponseReceived($(xml).find("detail"));
-					   			console.log("detail found");
-					   		}
-					   		else {
-					   			backendResponseReceived(xmlToString(xml));
-					   			console.log("neither found");
-					   		} */
-					   		//console.log("type=" + xmlToString($(xml).find("type")));						   								   		
+					   		switch(responseType) {
+								case "success":
+									backendResponseReceived("Success");
+									break;
+								case "ERROR":
+									var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
+									var responseDetail = detailMatch[1];
+									backendResponseReceived(responseDetail);
+									break;
+								default:
+									backendResponseReceived(data);
+					   		}	
+					   								   								   		
 					   		console.log(data);
 					   }
 					});
