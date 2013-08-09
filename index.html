@@ -325,14 +325,14 @@
 				//alert(base_url + res_id_input.val() + "/" + direction + "?user=kyle.jernigan&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
 				  var urlParameters = {
-				  	"user" : "kyle.jernigan",
+				  	"user" : "pn.kiosk",
 				  	"siteId" : garage_select.val(),
 				  	"timestamp" : timeUrlString
 				  };
 				  
 				  $.ajax({
 					   type:"GET",
-					   headers: {"Authorization" : "Basic dGVzdGVyOjUzOTFjN2ExZmVlYzFhYjU5YjZi"},
+					   headers: {"Authorization" : "Basic cG4ua2lvc2s6U1VQRVJWSVNPUg=="},
 					   url: base_url,
 					   data: urlParameters,
 					   dataType: "html",
