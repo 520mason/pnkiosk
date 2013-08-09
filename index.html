@@ -320,7 +320,7 @@
 				
 				var timeUrlString = syyyy + "-" + smm + "-" + sdd + "T" + shh + ":" + smmi + ":" + sss + "-0500";
 				
-				var base_url = "/call/ffq/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
+				var base_url = "/call/ffr/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
 				
 				//alert(base_url + res_id_input.val() + "/" + direction + "?user=kyle.jernigan&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
@@ -332,7 +332,7 @@
 				  
 				  $.ajax({
 					   type:"GET",
-					   headers: {"Authorization" : "Basic dGVzdGVyOmM2ZGRiYmIwNzllODAxMWJiMWQ2"},
+					   headers: {"Authorization" : "Basic dGVzdGVyOjUzOTFjN2ExZmVlYzFhYjU5YjZi"},
 					   url: base_url,
 					   data: urlParameters,
 					   dataType: "html",
