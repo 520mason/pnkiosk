@@ -86,10 +86,7 @@
                                 <label>Garage:</label>
 								 <div class="ui-select controls" id="garage_select_div" style="width: 218px; margin-bottom:15px">
                                     <select id="garage_select">
-                                    	<option value="NONE" selected></option>
-                                        <option value="GARAGE_15199" >433 Mason</option>
-                                        <option value="GARAGE_15196">520 Mason</option>
-                                        <option value="GARAGE_15187">225 Bush</option>
+                                    	<option value="GARAGE_15119" selected>400 Taylor</option>
                                     </select>
                                 </div>
                             </div>
@@ -332,6 +329,7 @@
 				  
 				  $.ajax({
 					   type:"GET",
+					   //APIVerse Authentication
 					   headers: {"Authorization" : "Basic dGVzdGVyOjUzOTFjN2ExZmVlYzFhYjU5YjZi"},
 					   url: base_url,
 					   data: urlParameters,
