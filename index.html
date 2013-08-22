@@ -319,7 +319,7 @@
 				
 				var base_url = "/call/ffr/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
 				
-				//alert(base_url + res_id_input.val() + "/" + direction + "?user=kyle.jernigan&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
+				console.log("HTTP GET: " + base_url + res_id_input.val() + "/" + direction + "?user=pn.kiosk&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
 				  var urlParameters = {
 				  	"user" : "pn.kiosk",
@@ -353,7 +353,7 @@
 									backendResponseReceived(data);
 					   		}	
 					   								   								   		
-					   		console.log(data);
+					   		console.log("Response: " + data);
 					   },
 					   error: function (xhr, ajaxOptions, thrownError) {
                         	backendResponseReceived('<div class="alert alert-error" style="width:150px; margin: 0 auto;"><i class="icon-remove-sign"></i>' + xhr.status + ' Error</div>');
