@@ -319,7 +319,7 @@
 				
 				var base_url = "/call/ffr/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
 				console.log("Authorization Header: Basic dGVzdGVyOjUzOTFjN2ExZmVlYzFhYjU5YjZi");
-				console.log("HTTP GET: " + base_url + res_id_input.val() + "/" + direction + "?user=pn.kiosk&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
+				console.log("HTTP GET: " + base_url + "?user=pn.kiosk&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
 				  var urlParameters = {
 				  	"user" : "pn.kiosk",
