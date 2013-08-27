@@ -317,7 +317,7 @@
 				
 				var timeUrlString = syyyy + "-" + smm + "-" + sdd + "T" + shh + ":" + smmi + ":" + sss + "-0500";
 				
-				var base_url = "/call/ffr/rest/2.0/reservation/" + res_id_input.val() + "/" + direction;
+				var base_url = "/call/ffr/rest/2.1/reservation/" + res_id_input.val() + "/" + direction;
 				console.log("Authorization Header: Basic dGVzdGVyOjUzOTFjN2ExZmVlYzFhYjU5YjZi");
 				console.log("HTTP GET: https://api.park-nowna.com" + base_url + "?user=pn.kiosk&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
 				
