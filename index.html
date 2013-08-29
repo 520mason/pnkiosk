@@ -191,7 +191,8 @@
 				xmlString = (new XMLSerializer()).serializeToString(xmlData);
 			}
 			return xmlString;
-		}   
+		}
+		  
 		
 		//Backend Response Received
 		function backendResponseReceived(data) {
@@ -236,9 +237,7 @@
 			time_tip.tooltip('destroy');
 		});	
 		
-		//Clear button clicked
-		$('.clear_btn').click(function(){
-			
+		function clearData() {
 			res_id_input.val("");
 			time_tip.val("");
 			$('time_input').val("");
@@ -246,8 +245,12 @@
 			
 			//Gets slider button value
 			//if ($('.slider-button').hasClass("on"))
-			$('.slider-button').removeClass("on").html($('.slider-button').data("off-text"));		
-			
+			$('.slider-button').removeClass("on").html($('.slider-button').data("off-text"));
+		} 
+		
+		//Clear button clicked
+		$('.clear_btn').click(function(){
+			clearData();
 		});
 		
 		//Submit button clicked
@@ -343,6 +346,7 @@
 					   		switch(responseType) {
 								case "success":
 									backendResponseReceived('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
+									clearData();
 									break;
 								case "ERROR":
 									var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
