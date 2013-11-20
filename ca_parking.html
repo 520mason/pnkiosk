@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ParkNow Kiosk</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+    <!-- bootstrap -->
+    <link href="detail-wrap/css/bootstrap/bootstrap.css" rel="stylesheet" />
+    <link href="detail-wrap/css/bootstrap/bootstrap-responsive.css" rel="stylesheet" />
+    <link href="detail-wrap/css/bootstrap/bootstrap-overrides.css" type="text/css" rel="stylesheet" />
+
+    <!-- global styles -->
+    <link rel="stylesheet" type="text/css" href="detail-wrap/css/layout.css">
+    <!--  <link rel="stylesheet" type="text/css" href="detail-wrap/css/elements.css"> -->
+    <link rel="stylesheet" type="text/css" href="detail-wrap/css/icons.css">
+    <link rel="stylesheet" type="text/css" href="detail-wrap/css/compiled/elements.css">
+
+    <!-- libraries -->
+    <link href="detail-wrap/css/lib/jquery-ui-1.10.2.custom.css" rel="stylesheet" type="text/css" />
+    <link href="detail-wrap/css/lib/font-awesome.css" type="text/css" rel="stylesheet" />
+    <link href="detail-wrap/css/lib/morris.css" type="text/css" rel="stylesheet" />
+    
+    <!-- this page specific styles -->
+    <link rel="stylesheet" href="detail-wrap/css/compiled/chart-showcase.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="detail-wrap/css/compiled/form-showcase.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="detail-wrap/css/compiled/ui-elements.css" type="text/css" media="screen">
+    
+    <!--<link href="../css/bootstrap.min.css" rel="stylesheet" media="screen"> -->
+    <link href="css/datetimepicker.css" rel="stylesheet" media="screen">
+
+    <!-- open sans font -->
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+
+    <!-- navbar -->
+    <div class="navbar navbar-inverse">
+        <div class="navbar-inner">
+            <button type="button" class="btn btn-navbar visible-phone" id="menu-toggler">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            
+            <a class="brand" href=""><img src="detail-wrap/img/logo.png"></a>
+
+            
+            </ul>            
+        </div>
+    </div>
+    <!-- end navbar -->
+
+    <!-- sidebar -->
+    <div id="sidebar-nav">
+        <ul id="dashboard-menu"> 
+            <li class="active">
+                <a href="index.html">
+                    <div class="pointer">
+                        <div class="arrow"></div>
+                        <div class="arrow_border"></div>
+                    </div>
+                    <i class="icon-edit"></i>
+                    <span>Kiosk</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- end sidebar -->
+
+
+	<!-- main container -->
+    <div class="content">
+		 <div class="container-fluid">
+            <div id="pad-wrapper" class="form-page">
+                <div class="row-fluid form-wrapper" style="position: relative">
+                	<h4 class="title">Reservation Kiosk</h4>
+                    <!-- left column -->
+                    <div class="span8" style="margin-left:20px;" id="validation_form">
+                        <form>
+                        	<div class="field-box">
+                                <label>Garage:</label>
+								 <div class="ui-select controls" id="garage_select_div" style="width: 218px; margin-bottom:15px">
+                                    <select id="garage_select">
+                                    	<option value="GARAGE_15119" selected>400 Taylor</option>
+                                    	<option value="GARAGE_15143" selected>555 Jackson</option>
+                                    </select>
+                                </div>
+                            </div>
+                        	<div class="field-box">
+                                <label>Reservation ID:</label>
+								<div class="controls">
+										<input id="res_id_input" type="text" pattern="\d*">
+								</div>
+                            </div>
+                            <div class="field-box row ctrls">
+                                <label>Direction:</label>
+                                <div class="controls slider-frame primary" style="margin-bottom:15px">
+                                	<span data-on-text="OUT" data-off-text="IN" class="slider-button">IN</span>
+                                </div>
+                            </div>
+                            <div class="field-box">
+                                <label>Time:</label>
+                                <div class="control-group">
+									<div class="controls input-append date form_datetime" id="departure_div" data-date-format="MM dd - H:ii p" data-link-field="time_input">
+										<input type="text" value="" id="time_tooltip" readonly style="width: 140px">
+										<span class="add-on"><i class="icon-remove"></i></span>
+										<span class="add-on"><i class="icon-calendar"></i></span>
+									</div>
+									<input type="hidden" id="time_input" value="" /><br/>
+								</div>
+                            </div>                            
+                        </form>
+                    </div>
+                    <div style="position: absolute; bottom: 0; right:0;"><a class="btn-flat inverse submit_btn">Submit</a> <a class="btn-flat white clear_btn" style="margin-left:20px">Clear</a></div>
+                </div>
+            </div>
+        </div>
+
+<div id="modalwin" class="modal hide fade" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <header class="modal-header">
+    <a href="#" class="close" data-dismiss="modal">x</a>
+    <h3>Response</h3>
+  </header>
+
+  <div class="modal-body">
+	<div id="activity_indicator" style="text-align: center;"><img src="img/activity_indicator.gif" /></div>
+	<div id="backend_response" style="text-align: center;"></div>
+  </div>
+
+  <footer class="modal-footer">
+    <a href="#" class="btn btn-primary" data-dismiss="modal">OK</a>
+  </footer>
+</div>
+
+
+<!-- Charts -->        
+        <div class="container-fluid">
+            <div id="pad-wrapper" style="margin-top:0px">
+        
+            </div>
+        </div>
+        <!-- end charts -->
+    </div>
+    <!-- end main container -->
+
+
+<!-- scripts for this page -->
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="detail-wrap/js/bootstrap.min.js"></script>
+<script src="detail-wrap/js/jquery-ui-1.10.2.custom.min.js"></script> 
+<!-- <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script> -->
+<!-- call all plugins -->
+<script src="detail-wrap/js/theme.js"></script>
+<script type="text/javascript" src="js/bootstrap-datetimepicker.js" charset="UTF-8"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    
+    	//Blocks closing of modal by clicking background or pressing Esc
+    	$('#modalwin').data("backdrop", "static");
+    	$('#modalwin').data("keyboard", "false");
+    	
+    	$('#backend_response').hide();
+    	    	
+		// Switch slide buttons
+		$('.slider-button').click(function() {
+			if ($(this).hasClass("on")) {
+				$(this).removeClass('on').html($(this).data("off-text"));   
+			} else {
+				$(this).addClass('on').html($(this).data("on-text"));
+			}
+		});
+
+		function dateFromString(str) {
+		  var match = str.match(/^(\d+)-(\d+)-(\d+) (\d+)\:(\d+)\:(\d+)$/)
+		  return new Date(match[1], match[2] - 1, match[3], match[4], match[5], match[6]);
+		}
+		
+		function xmlToString(xmlData) { 
+
+			var xmlString;
+			//IE
+			if (window.ActiveXObject){
+				xmlString = xmlData.xml;
+			}
+			// code for Mozilla, Firefox, Opera, etc.
+			else{
+				xmlString = (new XMLSerializer()).serializeToString(xmlData);
+			}
+			return xmlString;
+		}
+		  
+		
+		//Backend Response Received
+		function backendResponseReceived(data) {
+			$('#activity_indicator').hide();
+			//$('#backend_response').html('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
+			$('#backend_response').html(data);
+			$('#backend_response').show();
+		}
+		
+		function resetActivityIndicator() {
+			$('#activity_indicator').show();
+			$('#backend_response').hide();
+		}
+		
+		
+		$('.form_datetime').datetimepicker({
+			//language:  'fr',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+			showMeridian: 1,
+			minuteStep: 1,
+			pickerPosition: 'bottom-left'
+		});
+		
+		var time_tip = $('#time_tooltip'); 
+		var res_id_input = $('#res_id_input');
+		var garage_select = $('#garage_select');
+		
+		$('#garage_select_div').mousedown(function() {
+			$('#garage_select_div').tooltip('destroy');
+		});	
+		
+		res_id_input.mousedown(function() {
+			res_id_input.tooltip('destroy');
+		});	
+		
+		time_tip.mousedown(function() {
+			time_tip.tooltip('destroy');
+		});	
+		
+		function clearData() {
+			res_id_input.val("");
+			time_tip.val("");
+			$('time_input').val("");
+			//garage_select.val("NONE");
+			
+			//Gets slider button value
+			//if ($('.slider-button').hasClass("on"))
+			$('.slider-button').removeClass("on").html($('.slider-button').data("off-text"));
+		} 
+		
+		//Clear button clicked
+		$('.clear_btn').click(function(){
+			clearData();
+		});
+		
+		//Submit button clicked
+		$('.submit_btn').click(function(){
+			var validInput = true;
+			if (garage_select.val() == "NONE") {
+				$('#garage_select_div').tooltip({
+					title: 'Please select a garage.',
+					trigger: 'manual',
+					placement: 'bottom'
+				});
+				validInput = false;
+				$('#garage_select_div').tooltip('show');
+			}
+			
+			if (!time_tip.val()) {
+				time_tip.tooltip({
+					title: 'Please enter a time.',
+					trigger: 'manual',
+					placement: 'bottom'
+				});
+				validInput = false;
+				time_tip.tooltip('show');
+			}
+			
+			if (!res_id_input.val()) {
+				res_id_input.tooltip({
+					title: 'Please enter a Reservation ID.',
+					trigger: 'manual',
+					placement: 'bottom'
+				});
+				validInput = false;
+				res_id_input.tooltip('show');
+			}
+			
+			if(!/^\d+$/.test(res_id_input.val())) {
+				res_id_input.tooltip({
+					title: 'Should only contain numbers.',
+					trigger: 'manual',
+					placement: 'bottom'
+				});
+				validInput = false;
+				res_id_input.tooltip('show');
+			}
+			
+			if (validInput) {
+				
+				//Show modal and prepare activity indicator
+				resetActivityIndicator();	
+				$('#modalwin').modal('show');			
+				//setTimeout(function() {backendResponseReceived()},1500);
+				
+				var direction = ($('.slider-button').hasClass("on") ? "out" : "in");
+				
+				var start = dateFromString($('#time_input').val());
+				var syyyy = start.getFullYear();
+				var sm = start.getMonth() + 1;
+				var smm = sm<10 ? '0'+sm : sm;
+				var sd = start.getDate();
+				var sdd = sd<10 ? '0'+sd : sd;
+				var sh = start.getHours();
+				var shh = sh<10 ? '0'+sh : sh;
+				var smi = start.getMinutes();
+				var smmi = smi<10 ? '0'+smi : smi;
+				var ss = start.getSeconds();
+				var sss = ss<10 ? '0'+ss : ss;
+				
+				var timeUrlString = syyyy + "-" + smm + "-" + sdd + "T" + shh + ":" + smmi + ":" + sss + "-0700";
+				
+				var base_url = "/call/ffs/rest/2.1/reservation/" + res_id_input.val() + "/" + direction;
+				console.log("Authorization Header: Basic dGVzdGVyOmNjY2E0YTlmYWJlNzVjNDU2Y2U5");
+				console.log("HTTP GET: https://api.park-nowna.com" + base_url + "?user=pn.kiosk&siteId=" + garage_select.val() + "&timestamp=" + timeUrlString);
+				
+				  var urlParameters = {
+				  	"user" : "pn.kiosk",
+				  	"siteId" : garage_select.val(),
+				  	"timestamp" : timeUrlString
+				  };
+				  
+				  $.ajax({
+					   type:"GET",
+					   //APIVerse Authentication
+					   headers: {"Authorization" : "Basic dGVzdGVyOmNjY2E0YTlmYWJlNzVjNDU2Y2U5"},
+					   url: base_url,
+					   data: urlParameters,
+					   dataType: "html",
+					   success: function(data, status, httpRequest) {
+					   
+					   		var typeMatch  = data.match(/<type>([^<]*)<\/type>/);
+					   		var responseType = typeMatch[1];
+					   		//console.log("Type = " + responseType);
+					   		
+					   		switch(responseType) {
+								case "success":
+									backendResponseReceived('<div class="alert alert-success" style="width:100px; margin: 0 auto;"><i class="icon-ok-sign"></i> Success!</div>');
+									clearData();
+									break;
+								case "ERROR":
+									var detailMatch  = data.match(/<detail>([^<]*)<\/detail>/);
+									var responseDetail = detailMatch[1];
+									backendResponseReceived('<div class="alert alert-error" style="margin: 0 auto;">' + responseDetail + '</div>');
+									break;
+								default:
+									backendResponseReceived(data);
+					   		}	
+					   								   								   		
+					   		console.log("Response: " + data);
+					   },
+					   error: function (xhr, ajaxOptions, thrownError) {
+                        	backendResponseReceived('<div class="alert alert-error" style="width:150px; margin: 0 auto;"><i class="icon-remove-sign"></i>' + xhr.status + ' Error</div>');
+					   }
+					   
+					});
+				
+			}
+		});
+	});
+</script>
+
+
+<script>
+  //Google Analytics
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-42139149-1', 'park-nowna.com');
+  ga('send', 'pageview');
+
+</script>
+</body>
+</html>
